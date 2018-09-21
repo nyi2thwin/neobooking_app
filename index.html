@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=440, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neo Booking </title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+	<link href="app-content/app.css" rel="stylesheet" />
+	<link href="app-content/custom.css" rel="stylesheet" />
+	<link href="app-content/font-awesome.css" rel="stylesheet" />
+	<link href="app-content/jk-rating-stars.min.css" rel="stylesheet" />
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar Holder -->
+		<!--<nav id="sidebar" ng-show="loggedIn || isGuest">
+			<div class="sidebar-header">
+				<a href="#!/home">
+					<img src="./pics/NeoBookingLogo.png" id="logo" alt="NeoBooking" />
+				</a>
+				<h4 ng-show="loggedIn && !isClinic" style = "padding: 10px;">Hello, {{userName}}</h4>
+				<h4 ng-show="isClinic" style = "padding: 10px;">Clinic: {{userName}}</h4>
+			</div>
+			<ul class="list-unstyled components" ng-show="isGuest">
+				<li>
+					<a href="#!/login">
+						<i class="glyphicon glyphicon-log-out" style="padding-right: 5px;"></i>
+						Login
+					</a>
+				</li>
+				<li>
+					<a href="#!/register">
+						<i class="glyphicon glyphicon-tasks" style="padding-right: 5px;"></i>
+						Register
+					</a>
+				</li>
+			</ul>
+			<ul class="list-unstyled components" ng-show="loggedIn">
+				<li ng-show="isClinic">
+					<a href="#!/listPatient">
+						<i class="glyphicon glyphicon-user" style="padding-right: 5px;"></i>
+						Patients in Queue
+					</a>
+				</li>
+				<li ng-show="isClinic">
+					<a href="#!/viewMyClinicInfo">
+						<i class="glyphicon glyphicon-tasks" style="padding-right: 5px;"></i>
+						My Clinic Info
+					</a>
+				</li>
+				<li ng-show="isClinic">
+					
+					<a href="#!/viewMyClinicReviews">
+						<i class="glyphicon glyphicon-check" style="padding-right: 5px;"></i>
+						My Clinic Reviews
+					</a>
+				</li>
+				<li ng-show="!isClinic">
+					<a href="#!/home">
+						<i class="glyphicon glyphicon-search" style="padding-right: 5px;"></i>
+						Search Nearby Clinic
+					</a>
+				</li>
+				<li ng-show="!isGuest && !isClinic">
+					<a href="#!/viewMyInfo">
+						<i class="glyphicon glyphicon-user" style="padding-right: 5px;"></i>
+						My Account Info
+					</a>
+				</li>
+				<li ng-show="!isGuest && !isClinic">
+					<a href="#!/viewHistory">
+						<i class="glyphicon glyphicon-inbox" style="padding-right: 5px;"></i>
+						Appointment History
+					</a>
+				</li>
+				<li ng-show="loggedIn" >
+					<a href="#!/logout"  ng-click="logout();">
+						<i class="glyphicon glyphicon-log-out" style="padding-right: 5px;"></i>
+						Logout
+					</a>
+				</li>
+			</ul>
+		</nav>-->
+
+		<!-- Page Content Holder -->
+		
+
+
+
+		<div id="content">
+			<!--<nav class="docs-navbar-header" ng-hide="currentPath === '/admin' || currentPath === '/login' || currentPath === '/register' || currentPath === '/recover'">
+				<div class="navbar-header">
+					<md-button aria-label="showhidesidebar" ng-click="sidebarCollapse()" class="sidebar-button md-raised md-primary">
+						<i class="glyphicon glyphicon-align-left"></i>
+					</md-button>
+				</div>
+			</nav>-->
+			<div style="top: auto">
+				<div style="color: grey" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+			</div>
+
+			<div ng-view style="height:100%; position: relative;"></div>
+		</div>
+
+	</div>
+	<div class="mobile-app-icon-bar-top">
+		<img height="30" src="./pics/NeoBookingLogo_black.png" alt="NeoBooking" />
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a>&nbsp;</a>
+		<a><i class="fa fa-user" aria-hidden="true"></i></a>
+		<a href="#!/logout"  ng-click="logout();"><i class="fa fa-cog" aria-hidden="true"></i></a>
+	</div>
+
+	<div class="mobile-app-icon-bar">
+		<a><i class="fa fa-picture-o" aria-hidden="true"></i></a>
+		<a><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+		<a><i class="fa fa-upload" aria-hidden="true"></i></a>
+		<a><i class="fa fa-list-ul" aria-hidden="true"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+	<script src="//code.angularjs.org/1.6.0/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
+
+	<!-- Angular Material Library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+	<!-- Google Map API -->
+	
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8Djzniu_hEVqAfN4PJhkhPVKRoT95Hws"
+  type="text/javascript"></script>
+
+    
+    <script src="app.js"></script>
+    <script src="app-services/authentication.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+	<script src="app-services/jk-rating-stars.min.js"></script>
+	
+	<!-- import Model's Services -->
+    <script src="model-services/user.service.js"></script>
+	<script src="model-services/booking.service.js"></script>
+	<script src="model-services/clinic.service.js"></script>
+	<script src="model-services/review.service.js"></script>
+	
+	<!--import Clinic Views' Controller  -->
+    <script src="clinic-view-controllers/patientListController.js"></script>
+	<script src="clinic-view-controllers/viewMyClinicInfoController.js"></script>
+	<script src="clinic-view-controllers/viewMyClinicReviewsController.js"></script>
+    <script src="clinic-view-controllers/admin.controller.js"></script>
+	
+	<!--import Member Views' Controller  -->
+	<script src="member-view-controllers/login.controller.js"></script>
+	<script src="member-view-controllers/recover.Controller.js"></script>
+    <script src="member-view-controllers/register.controller.js"></script>
+	<script src="member-view-controllers/homeController.js"></script>
+	<script src="member-view-controllers/mainController.js"></script>
+	<script src="member-view-controllers/viewMyInfoController.js"></script>
+	<script src="member-view-controllers/viewAppointmentHistoryController.js"></script>
+</body>
+</html>
