@@ -8,14 +8,14 @@
     Booking.$inject = ['$rootScope','$http','$filter'];
     function Booking($rootScope,$http,$filter) {
         var service = {};
-		var findBookingByClinicIdURL = "/findBookingByClinicId";
-		var findBookingByUserIdURL = "/findBookingByUserId";
-		var createBookingURL = "/createBooking";
-		var deleteBookingURL = "/deleteBooking";
-		var MarkVisitedURL = "/markVisited";
-		var sendNotification = "/sendNotification";
-		var findBookingByUserIdAndStatus = "/findBookingByUserIdAndStatus";
-		var findBookingByClinicIdAndStatus = "/findBookingByClinicIdAndStatus";
+		var findBookingByClinicIdURL = "/api//findBookingByClinicId";
+		var findBookingByUserIdURL = "/api/findBookingByUserId";
+		var createBookingURL = "/api/createBooking";
+		var deleteBookingURL = "/api/deleteBooking";
+		var MarkVisitedURL = "/api/markVisited";
+		var sendNotification = "/api/sendNotification";
+		var findBookingByUserIdAndStatus = "/api/findBookingByUserIdAndStatus";
+		var findBookingByClinicIdAndStatus = "/api/findBookingByClinicIdAndStatus";
 
         service.MakeAppointment = MakeAppointment;
 		service.Create = Create;

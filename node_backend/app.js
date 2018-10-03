@@ -22,7 +22,7 @@ var options = {
   provider: 'google',
   // Optional depending on the providers
   httpAdapter: 'https', // Default
-  apiKey: 'AIzaSyD2Nza2P2FZmM0ZY7lRf1-kYX_h-ONgPuI', // for Mapquest, OpenCage, Google Premier
+  apiKey: 'AIzaSyBb_uqswAhKGuXQh1fVenoZKRhc9C9vuhQ', // for Mapquest, OpenCage, Google Premier
   formatter: null         // 'gpx', 'string', ...
 };
  
@@ -85,4 +85,4 @@ clinic_routes(app); //register the route
 
 
 
-app.listen(1500, () => console.log('Example app listening on port 3000!'))
+app.listen(1500, () => console.log('Example app listening on port 1500!'))

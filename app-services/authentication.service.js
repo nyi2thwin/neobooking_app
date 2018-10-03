@@ -18,9 +18,9 @@
 
         function Login(username, password, callback) {
 			var response;
-			User.GetByNric(username)
+			User.GetByContactNo(contactNo)
 				.then(function (user) {
-					if (user !== null && user.password === password) {
+					if (user !== null) {
 						response = { success: true, data: user };
 					} else {
 						response = { success: false, message: 'Username or password is incorrect' };

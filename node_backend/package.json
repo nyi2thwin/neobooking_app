@@ -10,10 +10,21 @@
     "debug": "~2.6.9",
     "express": "^4.16.3",
     "hbs": "^4.0.1",
-    "mongoose": "^5.0.12",
+    "mongoose": "^5.3.1",
     "ngmap": "^1.18.4",
     "node-geocoder": "^3.22.0",
-    "nodemailer": "^4.6.4",
-    "request": "^2.85.0"
-  }
+    "nodemailer": "^4.6.8",
+    "request": "^2.88.0"
+  },
+  "description": "neoBooking app for Software Engineering Course",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "NA"
+  },
+  "keywords": [
+    "NA"
+  ],
+  "author": "NA",
+  "license": "UNLICENSED"
 }

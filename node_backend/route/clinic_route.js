@@ -1,31 +1,31 @@
 'use strict';
 module.exports = function(app){
-	var clinicController = require('../controllers/clinicController');
+	var clinicController = require('../controllers/ClinicController');
 	
-	app.route('/getAllclinics')
+	app.route('/api/getAllclinics')
 	.get(clinicController.listAllClinics);
 	
-	app.route('/findClinicById')
+	app.route('/api/findClinicById')
 	.post(clinicController.findClinicById);
 
-	app.route('/deleteClinicById')
+	app.route('/api/deleteClinicById')
 	.post(clinicController.deleteClinic);
 
-	app.route('/registerClinic')
+	app.route('/api/registerClinic')
 	.post(clinicController.registerNewClinic);
 	
-	app.route('/updateClinic')
+	app.route('/api/updateClinic')
 	.post(clinicController.editClinic);
 
-	app.route('/getNearByClinic/:postalcode')
+	app.route('/api/getNearByClinic/:postalcode')
 	.get(clinicController.listNearbyClinic);
 
-	app.route('/addReview')
+	app.route('/api/addReview')
 	.post(clinicController.addReview);
 
-	app.route('/deleteReview/:reviewId')
+	app.route('/api/deleteReview/:reviewId')
 	.post(clinicController.deleteReview);
 
-	app.route('/editReview/:reviewId')
+	app.route('/api/editReview/:reviewId')
 	.post(clinicController.editReview);
 };
