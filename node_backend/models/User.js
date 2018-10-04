@@ -5,17 +5,14 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
 	nric: {
 		type:String,
-		required: 'Kindly enter NRIC',
 		index: {unique: true}
 	},
 	email: {
 		type:String,
-		required: 'Kindly enter email',
 		index: {unique: true}
 	},
 	name: {
-		type:String,
-		required: 'Kindly enter user name'
+		type:String
 	},
 	contact: {
 		type:Number,
@@ -26,8 +23,7 @@ var UserSchema = new Schema({
 		type:Date
 	},
 	password: {
-		type:String,
-		required: 'Kindly enter password'
+		type:String
 	}
 });
 

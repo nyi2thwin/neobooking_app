@@ -16,14 +16,15 @@
 
         return service;
 
-        function Login(username, password, callback) {
+        function Login(contact, callback) {
 			var response;
-			User.GetByContactNo(contactNo)
+            //console.log(User);
+			User.GetByContactNo(contact)
 				.then(function (user) {
-					if (user !== null) {
+					if (user !== null && "_id" in user){
 						response = { success: true, data: user };
 					} else {
-						response = { success: false, message: 'Username or password is incorrect' };
+						response = { success: false, message: 'Something went wrong!' };
 					}
 					callback(response);
 			});
@@ -43,22 +44,18 @@
 			});
         }
 
-        function SetCredentials(username, password,data,isClinic) {
-            var authdata = Base64.encode(username + ':' + password);
+        function SetCredentials(contact,data,isClinic) {
 
             $rootScope.globals = {
                 currentUser: {
-                    username: username, //NRIC
-					authdata: authdata,
+                    contact: contact, //contact
 					id: data._id,
-					name:data.name,
                     isClinic:isClinic
-                    
                 }
             };
 
             // set default auth header for http requests
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+            //$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
             var cookieExp = new Date();

@@ -13,6 +13,9 @@ module.exports = function(app){
 	
 	app.route('/api/findUserByNric')
 	.post(accountController.findUserByNric);
+
+	app.route('/api/findUserByContactNo')
+	.post(accountController.findUserByContactNo);
 		
 	app.route('/api/updateUser')
 	.post(accountController.update_userinfo);

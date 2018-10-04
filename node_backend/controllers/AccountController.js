@@ -16,6 +16,14 @@ exports.findUserById = function(req,res){
 	});
 };
 
+exports.findUserByContactNo = function(req,res){
+	User.findOne({contact:req.body.contact}, function(err,user) {
+		if(err)
+			res.send(err);
+		res.json(user);
+	});
+};
+
 exports.findUserByNric = function(req,res){
 	User.findOne({nric:req.body.nric}, function(err,user) {
 		if(err)

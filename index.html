@@ -103,7 +103,7 @@
 				<div style="color: grey" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
 			</div>
 
-			<div ng-view style="height:100%; position: relative;"></div>
+			<div ng-view style="position: relative;"></div>
 		</div>
 
 	</div>
@@ -145,9 +145,7 @@
 
     
     <script src="app.js"></script>
-    <script src="app-services/authentication.service.js"></script>
-    <script src="app-services/flash.service.js"></script>
-	<script src="app-services/jk-rating-stars.min.js"></script>
+    
 	
 	<!-- import Model's Services -->
     <script src="model-services/user.service.js"></script>
@@ -169,5 +167,9 @@
 	<script src="member-view-controllers/mainController.js"></script>
 	<script src="member-view-controllers/viewMyInfoController.js"></script>
 	<script src="member-view-controllers/viewAppointmentHistoryController.js"></script>
+
+	<script src="app-services/authentication.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+	<script src="app-services/jk-rating-stars.min.js"></script>
 </body>
 </html>

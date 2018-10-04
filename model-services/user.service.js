@@ -9,7 +9,7 @@
     function User($http) {
         var service = {};
 
-        service.GetByNric = GetByNric;
+        service.GetByContactNo = GetByContactNo;
         service.Create = Create;
 		service.Update = Update;
 		service.ResetPasswordByEmail = ResetPasswordByEmail;
@@ -22,9 +22,9 @@
             return $http.post("/api/findUserByNric",nric).then(handleSuccess, handleError('Error getting user by id'));
         }
 
-        function GetByContactNo(contactNo) {
-            var userId = {"contactNo":contactNo};
-            return $http.post("/api/findUserByContactNo",userId).then(handleSuccess, handleError('Error getting user by id'));
+        function GetByContactNo(contact) {
+            var contact = {"contact":contact};
+            return $http.post("/api/findUserByContactNo",contact).then(handleSuccess, handleError('Error getting user by contactNo'));
         }
         
         function Create(user) {
