@@ -2,11 +2,12 @@
   map-lazy-load-params="{{googleMapsUrl}}">
   <ng-map center="41,-87" zoom="3"></ng-map>
 </div> -->
-<div>
+<div id="map"></div>
+<div style="z-index:100" class="map_overlay">
 	<form name="form" ng-submit="vm.search()" role="form" class="form-inline">
         <div class="form-group mb-2" ng-class="{ 'has-error': form.postalCode.$dirty && form.postalCode.$error.required }">
-            <label for="postalCode">Postal Code</label>
-            <input type="text" name="postalCode" ng-pattern="/\d{6}/" id="postalCode" class="form-control" ng-model="postalCode" value="{{postalCode}}" required />
+            <!-- <label for="postalCode">Postal Code</label> -->
+            <input type="text" name="postalCode" ng-pattern="/\d{6}/" id="postalCode" class="form-control" ng-model="postalCode" value="{{postalCode}}" placeholder="Enter your postalcode" required />
 			<md-button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="md-raised md-primary">Search</md-button>
 			<md-button ng-click="vm.getLatLong()" class="md-raised md-primary">Get nearby Clinic</md-button>
             <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -22,7 +23,7 @@
 </div>
 
 <div class="clearfix"></div>
-<section class="search-box" ng-hide ="hideSearchBox">
+<!-- <section class="search-box" ng-hide ="hideSearchBox">
     <div class="container-fluid" style="height:100%"> 
 		<div class="row" style="height:100%">
 			<div class="col-md-5 listing-block" ng-hide="hideSearchResult">
@@ -102,10 +103,7 @@
 				</div>
 		   
 			</div>
-			<div class="col-md-7 map-box mx-0 px-0" style="height:100%;">
-				<div id="map"></div>
-			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 

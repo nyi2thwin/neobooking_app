@@ -240,10 +240,6 @@ a.article, a.article:hover {
 	MAP STYLE
 ---------------------------------------------------------*/
 
-#map {	
-		width: 100%;
-        height: 100%;
-}
 #repeat{ 
      display: inline;
      }

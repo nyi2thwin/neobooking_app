@@ -66,6 +66,16 @@
                 templateUrl: 'member-views/viewAppointmentHistory.html',
                 controllerAs: 'vm'
             })
+            .when('/bpmCalculator', {
+                controller: 'bpmCalculatorController',
+                templateUrl: 'member-views/bpmCalculator.html',
+                controllerAs: 'vm'
+            })
+            .when('/stepsTracker', {
+                controller: 'stepsTrackerController',
+                templateUrl: 'member-views/setpsTracker.html',
+                controllerAs: 'vm'
+            })
 
             .otherwise({ redirectTo: '/login' });
     }

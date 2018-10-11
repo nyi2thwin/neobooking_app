@@ -108,21 +108,21 @@
 
 	</div>
 	<div class="mobile-app-icon-bar-top">
-		<img height="30" src="./pics/NeoBookingLogo_black.png" alt="NeoBooking" />
+		<a href="#!/home" ><img style="font-size:inherit;max-width:inherit;max-height:inherit;" height="30" src="./pics/NeoBookingLogo_black.png" alt="NeoBooking" /></a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
-		<a><i class="fa fa-user" aria-hidden="true"></i></a>
-		<a href="#!/logout"  ng-click="logout();"><i class="fa fa-cog" aria-hidden="true"></i></a>
+		<a href="#!/viewMyInfo"><i class="fa fa-user" aria-hidden="true"></i></a>
+		<a href="#!/logout"  ng-click="logout();"><i class="fa fa-sign-out-alt" aria-hidden="true"></i></a>
 	</div>
 
 	<div class="mobile-app-icon-bar">
-		<a><i class="fa fa-picture-o" aria-hidden="true"></i></a>
-		<a><i class="fa fa-map-marker" aria-hidden="true"></i></a>
-		<a><i class="fa fa-upload" aria-hidden="true"></i></a>
-		<a><i class="fa fa-list-ul" aria-hidden="true"></i></a>
+		<a href="#!/home"><i class="fa fa-search" aria-hidden="true"></i><br>Search</a>
+		<a href="#!/viewHistory"><i class="fa fa-list-ul" aria-hidden="true"></i><br>MyBooking</a>
+		<a href="#!/bpmCalculator"><i class="fa fa-heartbeat" aria-hidden="true"></i><br>BPM</a>
+		<a href="#!/stepsTracker"><i class="fa fa-shoe-prints" aria-hidden="true"></i><br>Steps</a>
 	</div>
 	<!-- Scripts -->
 	<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -167,6 +167,8 @@
 	<script src="member-view-controllers/mainController.js"></script>
 	<script src="member-view-controllers/viewMyInfoController.js"></script>
 	<script src="member-view-controllers/viewAppointmentHistoryController.js"></script>
+	<script src="member-view-controllers/bpmCalculatorController.js"></script>
+	<script src="member-view-controllers/stepsTrackerController.js"></script>
 
 	<script src="app-services/authentication.service.js"></script>
     <script src="app-services/flash.service.js"></script>

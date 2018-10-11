@@ -8,14 +8,14 @@
     Booking.$inject = ['$rootScope','$http','$filter'];
     function Booking($rootScope,$http,$filter) {
         var service = {};
-		var findBookingByClinicIdURL = "/api//findBookingByClinicId";
-		var findBookingByUserIdURL = "/api/findBookingByUserId";
-		var createBookingURL = "/api/createBooking";
-		var deleteBookingURL = "/api/deleteBooking";
-		var MarkVisitedURL = "/api/markVisited";
-		var sendNotification = "/api/sendNotification";
-		var findBookingByUserIdAndStatus = "/api/findBookingByUserIdAndStatus";
-		var findBookingByClinicIdAndStatus = "/api/findBookingByClinicIdAndStatus";
+		var findBookingByClinicIdURL = "https://neobooking.coinmm.co/api//findBookingByClinicId";
+		var findBookingByUserIdURL = "https://neobooking.coinmm.co/api/findBookingByUserId";
+		var createBookingURL = "https://neobooking.coinmm.co/api/createBooking";
+		var deleteBookingURL = "https://neobooking.coinmm.co/api/deleteBooking";
+		var MarkVisitedURL = "https://neobooking.coinmm.co/api/markVisited";
+		var sendNotification = "https://neobooking.coinmm.co/api/sendNotification";
+		var findBookingByUserIdAndStatus = "https://neobooking.coinmm.co/api/findBookingByUserIdAndStatus";
+		var findBookingByClinicIdAndStatus = "https://neobooking.coinmm.co/api/findBookingByClinicIdAndStatus";
 
         service.MakeAppointment = MakeAppointment;
 		service.Create = Create;

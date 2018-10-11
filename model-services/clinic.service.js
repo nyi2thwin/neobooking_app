@@ -16,7 +16,7 @@
 	    return service;
 		
 		function GetNearByClinic(postalCode) {
-			return $http.get("/api/getNearByClinic/" + postalCode).then(handleSuccess, handleError('Error getting nearby clinics'));
+			return $http.get("https://neobooking.coinmm.co/api/getNearByClinic/" + postalCode).then(handleSuccess, handleError('Error getting nearby clinics'));
 		}
 
 		function FindClinicById(clinicId) { 
@@ -24,10 +24,10 @@
 			{
 				"clinicId":clinicId,
 			};
-			return $http.post("/api/findClinicById", dataToSend).then(handleSuccess, handleError('Error finding clinic by Id'));
+			return $http.post("https://neobooking.coinmm.co/api/findClinicById", dataToSend).then(handleSuccess, handleError('Error finding clinic by Id'));
 		}
 		function Update(clinic) {
-			return $http.post("/api/updateClinic", clinic).then(handleSuccess, handleError('Error updating clinic info'));
+			return $http.post("https://neobooking.coinmm.co/api/updateClinic", clinic).then(handleSuccess, handleError('Error updating clinic info'));
 		}
 		
 		//Private Methods
