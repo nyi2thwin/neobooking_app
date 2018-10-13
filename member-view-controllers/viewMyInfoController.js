@@ -17,11 +17,11 @@
 		 var init = function(){
             vm.dataLoading = true;
 			
-			User.GetByNric($rootScope.globals.currentUser.username)
+			User.GetByContactNo($rootScope.globals.currentUser.contact)
 				.then(function (user) {
 					if (user !== null && user._id) {
 						$scope.mdata = user;
-						$scope.mdata.cpassword = user.password;
+					//	$scope.mdata.cpassword = user.password;
 						dataBeforeUpdate = angular.copy($scope.mdata);
 					} else {
 						FlashService.Error(user.message);
