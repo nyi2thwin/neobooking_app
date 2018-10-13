@@ -10,11 +10,17 @@
         var service = {};
 
         service.Login = Login;
+        service.VerifyContact = VerifyContact;
 		service.ClinicLogin = ClinicLogin;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
 
         return service;
+
+        function VerifyContact(contact) {
+            return $http.get("https://neobooking.coinmm.co/api/sendVerification/" + contact)
+            .then(handleSuccess, handleError('Error getting user by id'));
+        }
 
         function Login(contact, callback) {
 			var response;
@@ -67,6 +73,17 @@
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
+        }
+
+        // private functions 
+        function handleSuccess(res) {
+            return res.data;
+        }
+
+        function handleError(error) {
+            return function () {
+                return { success: false, message: error };
+            };
         }
     }
 
