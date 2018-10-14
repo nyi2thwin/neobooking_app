@@ -103,9 +103,9 @@
 		vm.getLatLong = async function(){
         	//vm.dataLoading = true;
 	    	vm.dataLoading = true;
-	    	var result = await getLatLongText();
+	    	//var result = await getLatLongText();
 	    	
-		  	Clinic.GetNearByClinic("647331")
+		  	Clinic.GetNearByClinic("639798")
 				.then(function (response) {
 					
 					if (response !== null && response.success && response.data.clinics) {

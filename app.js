@@ -73,7 +73,7 @@
             })
             .when('/stepsTracker', {
                 controller: 'stepsTrackerController',
-                templateUrl: 'member-views/setpsTracker.html',
+                templateUrl: 'member-views/stepsTracker.html',
                 controllerAs: 'vm'
             })
 

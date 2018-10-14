@@ -1,0 +1,27 @@
+﻿<script src="/jq_pages/js/jquery.min.js"></script>
+<script src="/jq_pages/js/shake.js"></script>
+<button onclick="reset();" class="md-raised md-primary md-button ng-scope md-ink-ripple">Reset</button>
+<div id="shake" style="font-size:100px;color:black;">0</div>
+<script>
+
+var myShakeEvent = new Shake({
+    threshold: 15, // optional shake strength threshold
+    timeout: 1000 // optional, determines the frequency of event generation
+});
+myShakeEvent.start();
+
+window.addEventListener('shake', shakeEventDidOccur, false);
+var counter = 0;
+//function to call when shake occurs
+function shakeEventDidOccur () {
+
+    //put your own code here etc.
+    counter += 1;
+    $("#shake").html(counter);
+}
+function reset(){
+	counter = 0;
+    $("#shake").html(counter);
+}
+
+</script>

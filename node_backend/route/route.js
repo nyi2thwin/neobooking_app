@@ -44,6 +44,9 @@ module.exports = function(app){
 	app.route('/api/sendNotification')
 	.post(bookingController.sendNotification);
 
+	app.route('/api/sendReminder')
+	.post(bookingController.sendReminder);
+
 	app.route('/api/markVisited')
 	.post(bookingController.markVisited);
 
