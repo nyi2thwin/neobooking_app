@@ -21,6 +21,9 @@
 		$scope.markers = []; 
 		$scope.clinicList = {};
 		$scope.estimatedTimeStr = "Estimated waiting time is 5 min(s)."
+		$scope.viewName = "List";
+		$scope.mapView = true;
+
 		
 		
 		$scope.openInfoWindow = function(e, selectedMarker){
@@ -39,11 +42,9 @@
 				});
 				marker.content = '<div class="infoWindowContent">' + clinic.address ;
 			  	marker.content += '</br>'
-			  	marker.content += '<button class="md-raised md-primary md-button" type="button" ng-click="vm.makeAppoint('+"'"+clinic._id+"'"+');">Book</button>'
-			  	marker.content += '<button class="md-raised md-primary md-button" type="button" ng-click="vm.seeReview('+"'"+clinic._id+"'"+');">See Review</button>'
+			  	marker.content += '<button class="md-raised md-primary md-button" type="button" ng-click="vm.bookInMapView('+"'"+clinic._id+"'"+');">Book</button>'
+			  	marker.content += '<button class="md-raised md-primary md-button" type="button" ng-click="vm.viewDetail('+"'"+clinic._id+"'"+');">View Detail</button>'
 			  	marker.content += '</div>'
-			  	
-			  	
 			  	
 
 				google.maps.event.addListener(marker, 'click', function(){
@@ -152,10 +153,21 @@
 				vm.dataLoading = false;
 			});
         }
+
+        vm.changeView = function(){
+        	if ($scope.viewName == "List"){ //in map view and change to list view
+        		$scope.viewName = "Map";
+        		$scope.mapView = false; // hide map
+        	}
+        	else{ //in list view and change to Map view
+        		$scope.viewName = "List"; 
+        		$scope.mapView = true; // show
+        	}
+        }
 		
 		vm.viewDetail = function(clinicId) {
 			vm.dataLoading = true;
-			
+			$scope.mapView = false; // hide map
 		
 			Booking.FindBookingByClinicIdAndStatus(clinicId,"waiting").then(function (booking) {
 				if (booking !== null && booking.success) {
@@ -188,8 +200,26 @@
         }
 		
 		vm.backToResult = function(){
-			$scope.hideSearchResult = false;
-			$scope.hideDetailResult = true;
+			if($scope.viewName == "List"){ //in map view
+				$scope.mapView = true;
+			}
+			else{
+				$scope.hideSearchResult = false;
+				$scope.mapView = false;
+				$scope.hideDetailResult = true;
+			}
+			
+			
+		}
+
+
+		vm.bookInMapView = function(clinicId){
+			if($scope.disableAppointment){
+				FlashService.Error("Booking is not allowed.You have an current Appointment");
+			}
+			else{
+				vm.makeAppoint(clinicId);
+			}
 		}
 
 		vm.makeAppoint = function(clinicId){
