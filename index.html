@@ -17,7 +17,7 @@
 <body>
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
-		<nav id="sidebar" ng-show="isClinic">
+		<nav id="sidebar" ng-show="isClinic" ng-cloak>
 			<div class="sidebar-header">
 				<a href="#!/home">
 					<img src="./pics/NeoBookingLogo.png" id="logo" alt="NeoBooking" />
@@ -107,18 +107,18 @@
 		</div>
 
 	</div>
-	<div class="mobile-app-icon-bar-top" ng-show="loggedIn && !isClinic">
+	<div class="mobile-app-icon-bar-top" ng-show="!isClinic" >
 		<a href="#!/home" ><img style="font-size:inherit;max-width:inherit;max-height:inherit;" height="30" src="./pics/NeoBookingLogo_black.png" alt="NeoBooking" /></a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
-		<a href="#!/viewMyInfo"><i class="fa fa-user" aria-hidden="true"></i></a>
-		<a href="#!/logout"  ng-click="logout();"><i class="fa fa-sign-out-alt" aria-hidden="true"></i></a>
+		<a ng-show="loggedIn" href="#!/viewMyInfo"><i class="fa fa-user" aria-hidden="true"></i></a>
+		<a ng-show="loggedIn" href="#!/logout"  ng-click="logout();"><i class="fa fa-sign-out-alt" aria-hidden="true"></i></a>
 	</div>
 
-	<div class="mobile-app-icon-bar" ng-show="loggedIn && !isClinic">
+	<div class="mobile-app-icon-bar" ng-show="loggedIn && !isClinic" ng-cloak>
 		<a href="#!/home"><i class="fa fa-search" aria-hidden="true"></i><br>Search</a>
 		<a href="#!/viewHistory"><i class="fa fa-list-ul" aria-hidden="true"></i><br>MyBooking</a>
 		<a href="#!/bpmCalculator"><i class="fa fa-heartbeat" aria-hidden="true"></i><br>BPM</a>
