@@ -144,3 +144,16 @@ table,form,.review-box{
   font-size:40px;
   height:60px;
 }
+.infoWinContainer{
+  color:#333;
+}
+.alert{
+  margin-bottom:0px;
+  margin-top:10px;
+}
+#postalCode{
+  width: 30%;
+  float: left;
+  margin-top: 5px;
+  padding: 18px 12px;
+}

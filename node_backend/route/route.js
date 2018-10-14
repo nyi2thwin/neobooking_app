@@ -5,6 +5,9 @@ module.exports = function(app){
 	app.route('/api/getAllusers')
 	.get(accountController.list_all_users);
 	
+	app.route('/api/sendVerification/:contact')
+	.get(accountController.sendVerification);
+
 	app.route('/api/register')
 	.post(accountController.registerNewUser);
 	

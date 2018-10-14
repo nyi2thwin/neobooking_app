@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	request = require('request');;
 
 var nodemailer = require('nodemailer');
 
@@ -96,6 +97,48 @@ exports.resetPasswordByEmail = function(req,res){
 		
 	});
 };
+
+exports.sendVerification = function(req, res) {
+	//send whatapp or telegram msg code here
+	User.findOne({contact:req.params.contact}, function(err,user) {
+		if(err)
+			res.send(err);
+		var toContact = "+65"+user.contact;
+		var username = "AC59e4977e40e9adf2ff7a51b597069587";
+		var password = "5dd689bae791867c4f6c8c0e75ccb0d0";
+		
+		var bodymsg = "This is from neoBooking. Your Verification code is 8989.";
+		
+		var options = {
+					    url: 'https://api.twilio.com/2010-04-01/Accounts/AC59e4977e40e9adf2ff7a51b597069587/Messages.json',
+					    method: 'POST',
+					    auth: {
+					        'user': username,
+					        'pass': password
+					    },
+					    form: {
+					        To: toContact,
+					        From: '+17025087743',
+					        Body: bodymsg
+					    },
+					    headers: {
+					        'Accept': '*/*'
+					    }
+					};
+		request(options,
+		    function (error, response, body) {
+		        if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
+		            console.log(body)
+		            res.json({ message: 'Verification SMS successfully sent to '+toContact+"!" });
+		        }
+		        if(error)
+					console.log(error)
+					res.json({ error: error,response:response, message: 'Verification SMS failed sent to '+toContact+"!" });
+		    }
+		);
+		
+	});
+};
 //reset password related stuff below
 //use your own gmail account.
 var transporter = nodemailer.createTransport({
@@ -133,4 +176,5 @@ function send_email(password,recipient,nric){
 	  }
 	});
 }
+
 

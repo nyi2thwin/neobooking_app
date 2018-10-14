@@ -5,8 +5,8 @@
         .module('app')
         .controller('homeController', homeController);
 	
-	homeController.$inject = ['$scope','$rootScope','FlashService','Booking','Clinic','Review','$filter'];
-    function homeController($scope,$rootScope,FlashService,Booking,Clinic,Review,$filter) {
+	homeController.$inject = ['$scope','$rootScope','FlashService','Booking','Clinic','Review','$filter','$compile'];
+    function homeController($scope,$rootScope,FlashService,Booking,Clinic,Review,$filter,$compile) {
 		var vm = this;
 		vm.dataLoading = false;
 		$scope.disableAppointment = false;
@@ -22,12 +22,14 @@
 		$scope.clinicList = {};
 		$scope.estimatedTimeStr = "Estimated waiting time is 5 min(s)."
 		
+		
+		$scope.openInfoWindow = function(e, selectedMarker){
+			e.preventDefault();
+			google.maps.event.trigger(selectedMarker, 'click');
+		}
+		
 		var infoWindow = new google.maps.InfoWindow();
-			$scope.openInfoWindow = function(e, selectedMarker){
-				e.preventDefault();
-				google.maps.event.trigger(selectedMarker, 'click');
-			}
-			
+
 		var createMarker = function (clinic){
 	                  
 				var marker = new google.maps.Marker({
@@ -37,10 +39,17 @@
 				});
 				marker.content = '<div class="infoWindowContent">' + clinic.address ;
 			  	marker.content += '</br>'
-			  	marker.content += '<button class="md-raised md-primary md-button" type="button" ng-transclude="" ng-click="vm.viewDetail()">Details</button>'
+			  	marker.content += '<button class="md-raised md-primary md-button" type="button" ng-click="vm.makeAppoint('+"'"+clinic._id+"'"+');">Book</button>'
+			  	marker.content += '<button class="md-raised md-primary md-button" type="button" ng-click="vm.seeReview('+"'"+clinic._id+"'"+');">See Review</button>'
 			  	marker.content += '</div>'
+			  	
+			  	
+			  	
+
 				google.maps.event.addListener(marker, 'click', function(){
-					infoWindow.setContent('<h5>' + marker.title + '</h5>' + marker.content);
+					
+					var compiled = $compile('<div class="infoWinContainer"><h5>' + marker.title + '</h5>' + marker.content+'</div>')($scope);
+					infoWindow.setContent(compiled[0]);
 					infoWindow.open($scope.map, marker);
 				});
 			  
@@ -95,7 +104,7 @@
 	    	vm.dataLoading = true;
 	    	var result = await getLatLongText();
 	    	
-		  	Clinic.GetNearByClinic(result)
+		  	Clinic.GetNearByClinic("647331")
 				.then(function (response) {
 					
 					if (response !== null && response.success && response.data.clinics) {
@@ -183,9 +192,9 @@
 			$scope.hideDetailResult = true;
 		}
 
-		vm.makeAppoint = function(){
+		vm.makeAppoint = function(clinicId){
 			vm.dataLoading = true;
-			Booking.MakeAppointment(loggedIn.id,$scope.mdata.clinic._id, function (response) {
+			Booking.MakeAppointment(loggedIn.id,clinicId, function (response) {
                 if (response != null && response.success) {
                     FlashService.Success(response.message,false);
 					$scope.disableAppointment = true;

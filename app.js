@@ -155,6 +155,8 @@
                         
         });
 
+        
+        
         $rootScope.$on('$locationChangeSuccess', function (event, next, current) { 
             if(isMobile()){
                 $rootScope.sidebarCollapse();
