@@ -12,7 +12,7 @@
         return service;
 		
 		function AddReview(dataToSend) {
-			return $http.post("/api/addReview", dataToSend).then(handleSuccess, handleError('Error finding clinic by Id'));
+			return $http.post("https://neobooking.coinmm.co/api/addReview", dataToSend).then(handleSuccess, handleError('Error finding clinic by Id'));
 		}
 
 		//Private Methods
