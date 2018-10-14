@@ -19,7 +19,7 @@
 			
 			AuthenticationService.ClinicLogin(vm.username, vm.password, function (response) {
                 if (response.success) {
-                    AuthenticationService.SetCredentials(vm.username, vm.password,response.data,true);
+                    AuthenticationService.SetCredentials(vm.username,response.data,true);
 					$rootScope.loggedIn = true;
 					$rootScope.userName = response.data.name;
 					$rootScope.isClinic = true;

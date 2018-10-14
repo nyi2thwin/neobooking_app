@@ -28,13 +28,14 @@
 		
 		$scope.notify = function(bookingId){
 			vm.dataLoading = true;
-		
+			
+
 			Booking.Notify(bookingId)
-				.then(function (response) {
+					.then(function (response) {
 					if (response !== null && response.success) {
 							
 						FlashService.Success(response.data.message);
-						init();
+						//init();
 					} else {
 						FlashService.Error(response.message);
 					}
@@ -59,7 +60,7 @@
 		}
 		var init = function(){
 			vm.dataLoading = true;
-			
+
 			Booking.FindBookingByClinicId(clinicId)
 				.then(function (response) {
 					if (response !== null && response.success) {

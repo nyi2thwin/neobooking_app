@@ -127,13 +127,13 @@ exports.sendNotification = function(req, res) {
 			if(err)
 					res.send(err);
 				var toContact = "+65"+user.contact;
-				var username = "AC0f15abf92c5e30938d7f8990736f26e6";
-				var password = "425ad2653fc524626d6933139cd12ed2";
+				var username = "AC59e4977e40e9adf2ff7a51b597069587";
+				var password = "5dd689bae791867c4f6c8c0e75ccb0d0";
 				
 				var bodymsg = "This is from neoBooking. Your queue number is in 5 min. Please proceed to clinic as soon as possible.";
 				
 				var options = {
-							    url: 'https://api.twilio.com/2010-04-01/Accounts/AC0f15abf92c5e30938d7f8990736f26e6/Messages.json',
+							    url: 'https://api.twilio.com/2010-04-01/Accounts/AC59e4977e40e9adf2ff7a51b597069587/Messages.json',
 							    method: 'POST',
 							    auth: {
 							        'user': username,
@@ -141,7 +141,7 @@ exports.sendNotification = function(req, res) {
 							    },
 							    form: {
 							        To: toContact,
-							        From: '+19122449810',
+							        From: '+17025087743',
 							        Body: bodymsg
 							    },
 							    headers: {
@@ -150,12 +150,15 @@ exports.sendNotification = function(req, res) {
 							};
 				request(options,
 				    function (error, response, body) {
-				        if (!error && response.statusCode == 200) {
+				        if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
 				            console.log(body)
+				            res.json({ message: 'Verification SMS successfully sent to '+toContact+"!" });
 				        }
+				        if(error)
+							console.log(error)
+							res.json({ error: error,response:response, message: 'Verification SMS failed sent to '+toContact+"!" });
 				    }
 				);
-				res.json({ message: 'Notification successfully sent to '+toContact+"!" });
 			});
 	});
 };

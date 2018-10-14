@@ -8,7 +8,7 @@
     Booking.$inject = ['$rootScope','$http','$filter'];
     function Booking($rootScope,$http,$filter) {
         var service = {};
-		var findBookingByClinicIdURL = "https://neobooking.coinmm.co/api//findBookingByClinicId";
+		var findBookingByClinicIdURL = "https://neobooking.coinmm.co/api/findBookingByClinicId";
 		var findBookingByUserIdURL = "https://neobooking.coinmm.co/api/findBookingByUserId";
 		var createBookingURL = "https://neobooking.coinmm.co/api/createBooking";
 		var deleteBookingURL = "https://neobooking.coinmm.co/api/deleteBooking";
