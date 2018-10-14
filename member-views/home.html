@@ -2,7 +2,13 @@
   map-lazy-load-params="{{googleMapsUrl}}">
   <ng-map center="41,-87" zoom="3"></ng-map>
 </div> -->
-<div id="map" ng-show="mapView"></div>
+<!-- <div>
+	<input type="text" name="postalCode" ng-pattern="/\d{6}/" id="postalCode" class="form-control" ng-model="postalCode" value="{{postalCode}}" placeholder="Postcode" required />
+	<md-button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="md-raised md-primary">Search</md-button>
+	<md-button ng-click="vm.getLatLong()" class="md-raised md-primary">Get nearby Clinic</md-button>
+	<md-button ng-click="vm.changeView()" class="md-raised md-primary">{{viewName}}</md-button>
+</div> -->
+<div id="map"></div>
 <div style="z-index:100;position:fixed;" class="map_overlay">
 	<form name="form" ng-submit="vm.search()" role="form" class="form-inline">
         <div class="form-group mb-2" ng-class="{ 'has-error': form.postalCode.$dirty && form.postalCode.$error.required }">
@@ -11,6 +17,7 @@
 			<md-button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="md-raised md-primary">Search</md-button>
 			<md-button ng-click="vm.getLatLong()" class="md-raised md-primary">Get nearby Clinic</md-button>
 			<md-button ng-click="vm.changeView()" class="md-raised md-primary">{{viewName}}</md-button>
+			
 
             <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             <span ng-show="form.postalCode.$dirty && form.postalCode.$error.required" class="help-block">Please enter Postal Code</span>
@@ -24,10 +31,103 @@
 	
 </div>
 
-<div class="clearfix"></div>
-<section class="search-box" ng-hide ="mapView">
+<div class="container">
+
+	<div class="panel-group" ng-hide ="mapView">
+	    <div class="panel panel-primary" ng-hide="hideSearchResult">
+	      	<div class="panel-heading" >Clinic Lists</div>
+	     		<div class="panel-body" style="overflow: scroll;">
+		      		<p><label ng-show="mdata.currentBooking.length == 0"> You have no current Appointment</label></p>
+					<div class="media">
+						<!-- <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i></div> -->
+						<div class="media-body pl-3" ng-repeat="clinic in clinicList">
+							<div class="name"><small>{{clinic.name}}</small></div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Operating Hr:</span>
+								<span><i class="fa fa-clock"></i>{{clinic.startTime}}</span>
+								<span>to</span>
+								<span>{{clinic.endTime}}</span>
+							</div>
+							<div class="address">{{clinic.address}} </div>
+							<md-button type="submit" ng-Click="vm.viewDetail(clinic._id);" class="md-raised">View Detail</md-button>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+	    </div>
+
+	    <div class="panel panel-primary" ng-hide="hideDetailResult">
+	      	<div class="panel-heading" >Clinic Detail/div>
+	     		<div class="panel-body" style="overflow: scroll;">
+		      		<div class="media">
+						<div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
+						<div class="media-body pl-3">
+							<div class="name"><small>{{mdata.clinic.name}}</small></div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Operating Hr:</span>
+								<span><i class="fa fa-clock"></i>{{mdata.clinic.startTime}}</span>
+								<span></i>to</span>
+								<span>{{mdata.clinic.endTime}}</span>
+							</div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Doctors:</span>
+								<span id="repeat" ng-repeat="dr in mdata.clinic.doctors">
+								<i class="fa fa-user"></i>{{dr}}</span>
+							</div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Address:</span>
+								<span><i class="fa fa-address-card"></i>{{mdata.clinic.address}}</span>
+								<span><i class="fa fa-address-card""></i>{{mdata.clinic.postalCode}}</span>
+							
+							</div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>{{estimatedTimeStr}}</span>
+								
+							</div>
+						</div>
+						<md-button type="submit" ng-click="vm.backToResult()" class="md-warn md-raised md-hue-2">Back to Result</md-button>
+						<md-button type="submit" ng-disabled="isGuest" ng-Click="vm.enableReviewBox();" class="md-raised md-primary">Write Review</md-button>
+						<md-button type="submit" ng-disabled="isGuest || disableAppointment || outsideOperatingHr" ng-Click="vm.makeAppoint();" class="md-raised md-primary">Make Appointment</md-button>
+						<span ng-show="isGuest" class="help-block">Please 
+							<a href="#!/login"><span class="btn-link">login</span></a> to make Appointment and Review.</span>
+						<span ng-show="disableAppointment" class="help-block">You already have an appointment. <a href="#!/viewHistory"><span class="btn-link">view the current appointment</span></a> </span>
+						<span ng-show="outsideOperatingHr" class="help-block"> Booking is not allowed outside operating hours.</span>
+
+						<div class="form-group" ng-show="showReviewBox">
+							<label for="comment">Review:</label>
+							<jk-rating-stars rating="firstRate"></jk-rating-stars>
+							<textarea class="form-control" rows="5" id="comment" ng-model="newComment"></textarea>
+							<div align="right">
+								<md-button id="cancel" type="button" md-no-ink class="md-primary" ng-Click="vm.cancelReview();">Cancel</md-button>
+								<md-button type="button" class="md-raised md-primary" ng-Click="vm.submitReview();">Submit</md-button>
+							</div>
+						</div>
+										
+						<div class="media-body pl-3" ng-repeat="review in mdata.clinic.reviews">
+							<jk-rating-stars rating="review.rating" read-only="true" ></jk-rating-stars>
+							<div class="name"><small>{{review.username}}</small></div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Review:</span>
+								<span><i class="fa fa-comment"></i>{{review.content}}</span>
+								
+							</div>
+							<div class="address">{{review.datetime}} </div>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+	    </div>
+	</div>
+</div>
+
+<!-- <div class="clearfix"></div> -->
+<!-- <section class="search-box" ng-hide ="mapView">
     <div class="container-fluid" style="height:100%;"> 
-		<div class="row" style="height:100%;padding-top: 120px;background:white;position:fixed;    height: 90%;">
+		<div class="row" style="height:100%;padding-top: 120px;background:white;position:fixed;height: 90%;">
 			<div class="col-md-5 listing-block" ng-hide="hideSearchResult">
 				<div class="media">
 					<div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
@@ -109,3 +209,4 @@
 	</div>
 </section> 
 
+ -->
