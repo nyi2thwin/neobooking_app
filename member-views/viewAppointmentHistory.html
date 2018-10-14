@@ -1,80 +1,69 @@
 ﻿
-<h2>Current Appointment</h2>
-<label ng-show="mdata.currentBooking.length == 0"> You have no current Appointment</label>
-<table class="table table-hover" ng-hide="mdata.currentBooking.length == 0">
-		<thead>
-			<tr>
-			  <th scope="col" class="text-center">Clinic Name</th>
-			  <th scope="col">Time</th>
-			  <th scope="col">Status</th>
-			  <th scope="col">My Qno</th>
-			  <th scope="col">&nbsp;</th>
-			</tr>
-		</thead>
-		<tbody>
- 
-		  <tr ng-repeat="booking in mdata.currentBooking">
-			<td style="width:50%;" class="text-center" filter="{name:'text'}" sortable="'name'">
-				<strong>{{booking.clinic.name}}</strong>
-				<div class="stats">
-					<span><i class="fa fa-bath"></i>{{booking.clinic.address}}</span>
-					<span><i class="fa fa-bath"></i>{{mdata.clinic.postalCode}}</span>		
+<div class="container">
+  	<h2>My Booking</h2>
+  	<div class="panel-group">
+	    <div class="panel panel-primary">
+	      	<div class="panel-heading" >Current Appointment</div>
+	     		<div class="panel-body">
+		      		<p><label ng-show="mdata.currentBooking.length == 0"> You have no current Appointment</label></p>
+					<div class="media">
+						<div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
+						<div class="media-body pl-3" ng-repeat="booking in mdata.currentBooking">
+							<div class="name"><small>{{booking.clinic.name}}</small></div>
+							<div class="address">{{clinic.address}} </div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Booking Date:</span>
+								<span><i class="fa fa-clock"></i>{{booking.dateTime}}</span>
+								
+							</div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Status:</span>
+								<span><i class="fa fa-clock"></i>{{booking.status}}</span>
+								
+							</div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>My Qno:</span>
+								<span><i class="fa fa-clock"></i>{{booking.queNo}}</span>
+								
+							</div>
+							<md-button type="submit" ng-click="vm.cancel(booking._id);"  ng-show="booking.status == 'waiting'" class="md-raised md-warn md-hue-2">Cancel</md-button>
+						</div>
+					</div>
+					
 				</div>
-			</td>
-			
-			<td style="width:20%;" class="text-left" filter="{dateTime:'text'}" sortable="'dateTime'">
-				{{booking.dateTime}}
-			</td>
-			<td style="width:10%;" class="text-left" filter="{status:'text'}" sortable="'status'">
-				{{booking.status}}
-			</td>
-			<td style="width:10%;" class="text-left" filter="{status:'text'}" sortable="'status'">
-				{{booking.queNo}}
-			</td>
-            <td>
-				<md-button type="submit" ng-click="vm.cancel(booking._id);"  ng-show="booking.status == 'waiting'" class="md-raised md-warn md-hue-2">Cancel</md-button>
-			</td>
-			      		
-		  </tr>
-		</tbody>
-	</table>
-<h2>Appointment History </h2>
-	<label ng-show="mdata.bookings.length == 0"> You don't have any Appointment History</label>
-	<table class="table table-hover" ng-hide="mdata.bookings.length == 0">
-		<thead>
-			<tr>
-			  <th scope="col" class="text-center">Clinic Name</th>
-			  <th scope="col">Time</th>
-			  <th scope="col">Status</th>
-			  <th scope="col">My Qno</th>
-			  <th scope="col">&nbsp;</th>
-			</tr>
-		</thead>
-		<tbody>
- 
-		  <tr ng-repeat="booking in mdata.bookings">
-			<td style="width:50%;" class="text-center" filter="{name:'text'}" sortable="'name'">
-				<strong>{{booking.clinic.name}}</strong>
-				<div class="stats">
-					<span><i class="fa fa-bath"></i>{{booking.clinic.address}}</span>
-					<span><i class="fa fa-bath"></i>{{mdata.clinic.postalCode}}</span>		
+			</div>
+	    </div>
+
+	    <div class="panel panel-primary">
+	      	<div class="panel-heading" >History Appointment</div>
+	      		<div class="panel-body">
+		      		<p><label ng-show="mdata.bookings.length == 0"> You have no Appointment History</label></p>
+					<div class="media">
+						<div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
+						<div class="media-body pl-3" ng-repeat="booking in mdata.bookings">
+							<div class="name"><small>{{booking.clinic.name}}</small></div>
+							<div class="address">{{clinic.address}} </div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Booking Date:</span>
+								<span><i class="fa fa-clock"></i>{{booking.dateTime}}</span>
+								
+							</div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>Status:</span>
+								<span><i class="fa fa-clock"></i>{{booking.status}}</span>
+								
+							</div>
+							<div class="stats">
+								<span><i class="fa fa-arrows-alt"></i>My Qno:</span>
+								<span><i class="fa fa-clock"></i>{{booking.queNo}}</span>
+								
+							</div>
+							<md-button type="submit" ng-Click="vm.book(booking.clinic);" ng-disabled="disableAppointment" class="md-raised md-primary">Make Appointment</md-button>
+						</div>
+					</div>
 				</div>
-			</td>
-			
-			<td style="width:20%;" class="text-left" filter="{dateTime:'text'}" sortable="'dateTime'">
-				{{booking.dateTime}}
-			</td>
-			<td style="width:10%;" class="text-left" filter="{status:'text'}" sortable="'status'">
-				{{booking.status}}
-			</td>
-			<td style="width:10%;" class="text-left" filter="{status:'text'}" sortable="'status'">
-				{{booking.queNo}}
-			</td>
-            <td>
-				<md-button type="submit" ng-Click="vm.book(booking.clinic);" ng-disabled="disableAppointment" class="md-raised md-primary">Make Appointment</md-button>
 				
-			</td>
-			      		
-		  </tr>
-		</tbody>
-	</table>
+	      	</div>
+	  	</div>
+    </div>
+</div>

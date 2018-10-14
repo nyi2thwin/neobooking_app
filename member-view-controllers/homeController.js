@@ -161,13 +161,16 @@
         	}
         	else{ //in list view and change to Map view
         		$scope.viewName = "List"; 
-        		$scope.mapView = true; // show
+        		$scope.mapView = true; // show map
+
         	}
         }
 		
 		vm.viewDetail = function(clinicId) {
+
 			vm.dataLoading = true;
 			$scope.mapView = false; // hide map
+			$scope.viewName = "Map";
 		
 			Booking.FindBookingByClinicIdAndStatus(clinicId,"waiting").then(function (booking) {
 				if (booking !== null && booking.success) {

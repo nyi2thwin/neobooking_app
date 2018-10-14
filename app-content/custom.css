@@ -21,7 +21,7 @@
     box-shadow: 10px 10px 0 rgba(0,0,0,0.2);
 }
 .ng-scope{
-	color:white;
+	color:rgb(51, 51, 51);
 }
 #map{
   width: 100%;
