@@ -39,7 +39,7 @@
     					$rootScope.loggedIn = true;
                         $location.path('/home');
                     } else {
-                        User.Create({contact:vm.contact})
+                        User.Create({contact:vm.contact, name: "unknown"})
                             .then(function (response) {
                                 console.log(response);
                                 if (response !== null && response._id) {

@@ -51,10 +51,15 @@
         }
 
         function SetCredentials(contact,data,isClinic) {
+            var name = "unknown"
+            if("name" in data){
+                name = data.name;
+            }
 
             $rootScope.globals = {
                 currentUser: {
                     contact: contact, //contact
+                    name: name,
 					id: data._id,
                     isClinic:isClinic
                 }
