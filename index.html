@@ -17,13 +17,13 @@
 <body>
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
-		<!--<nav id="sidebar" ng-show="loggedIn || isGuest">
+		<nav id="sidebar" ng-show="isClinic">
 			<div class="sidebar-header">
 				<a href="#!/home">
 					<img src="./pics/NeoBookingLogo.png" id="logo" alt="NeoBooking" />
 				</a>
-				<h4 ng-show="loggedIn && !isClinic" style = "padding: 10px;">Hello, {{userName}}</h4>
-				<h4 ng-show="isClinic" style = "padding: 10px;">Clinic: {{userName}}</h4>
+				<!-- <h4 ng-show="loggedIn && !isClinic" style = "padding: 10px;">Hello, {{userName}}</h4>
+				<h4 ng-show="isClinic" style = "padding: 10px;">Clinic: {{userName}}</h4> -->
 			</div>
 			<ul class="list-unstyled components" ng-show="isGuest">
 				<li>
@@ -84,14 +84,14 @@
 					</a>
 				</li>
 			</ul>
-		</nav>-->
+		</nav>
 
 		<!-- Page Content Holder -->
 		
 
 
 
-		<div id="content">
+		<div id="content" ng-class="{'clinic_view_container':isClinic}">
 			<!--<nav class="docs-navbar-header" ng-hide="currentPath === '/admin' || currentPath === '/login' || currentPath === '/register' || currentPath === '/recover'">
 				<div class="navbar-header">
 					<md-button aria-label="showhidesidebar" ng-click="sidebarCollapse()" class="sidebar-button md-raised md-primary">
@@ -107,7 +107,7 @@
 		</div>
 
 	</div>
-	<div class="mobile-app-icon-bar-top">
+	<div class="mobile-app-icon-bar-top" ng-show="loggedIn && !isClinic">
 		<a href="#!/home" ><img style="font-size:inherit;max-width:inherit;max-height:inherit;" height="30" src="./pics/NeoBookingLogo_black.png" alt="NeoBooking" /></a>
 		<a>&nbsp;</a>
 		<a>&nbsp;</a>
@@ -118,7 +118,7 @@
 		<a href="#!/logout"  ng-click="logout();"><i class="fa fa-sign-out-alt" aria-hidden="true"></i></a>
 	</div>
 
-	<div class="mobile-app-icon-bar">
+	<div class="mobile-app-icon-bar" ng-show="loggedIn && !isClinic">
 		<a href="#!/home"><i class="fa fa-search" aria-hidden="true"></i><br>Search</a>
 		<a href="#!/viewHistory"><i class="fa fa-list-ul" aria-hidden="true"></i><br>MyBooking</a>
 		<a href="#!/bpmCalculator"><i class="fa fa-heartbeat" aria-hidden="true"></i><br>BPM</a>
