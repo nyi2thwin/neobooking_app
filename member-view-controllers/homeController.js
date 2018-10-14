@@ -158,10 +158,14 @@
         	if ($scope.viewName == "List"){ //in map view and change to list view
         		$scope.viewName = "Map";
         		$scope.mapView = false; // hide map
+        		$scope.hideSearchResult = false;
+        		// $scope.hideDetailResult = !$scope.hideDetailResult;
+        		// $scope.hideSearchResult = !$scope.hideSearchResult;
         	}
         	else{ //in list view and change to Map view
         		$scope.viewName = "List"; 
         		$scope.mapView = true; // show map
+        		$scope.hideDetailResult = true;
 
         	}
         }
