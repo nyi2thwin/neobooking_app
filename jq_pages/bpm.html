@@ -1,25 +1,48 @@
-﻿<script src="/jq_pages/js/jquery.min.js"></script>
+﻿<style>
+#indic td{
+  padding:5px;
+}
+</style>
+<script src="/jq_pages/js/jquery.min.js"></script>
 <script src="/jq_pages/js/raphael.min.js"></script>
 <script src="/jq_pages/js/morris.min.js"></script>
-
-<div id="graph"></div>
+<md-button onclick="get_data();" class="md-raised md-primary">Get Data</md-button>
+<div id="graph" style="pointer-events:none;"></div>
+<table id="indic">
+  <tr><td style="background:#73c573;width:40px;">&nbsp;</td><td>Normal</td></tr>
+  <tr><td style="background:#ec4444;width:40px;">&nbsp;</td><td>High Risk</td></tr>
+</table>
 <script>
-Morris.Donut({
-  element: 'graph',
-  data: [
-    {value: 70, label: 'foo'},
-    {value: 15, label: 'bar'},
-    {value: 10, label: 'baz'},
-    {value: 5, label: 'A really really long label'}
-  ],
-  backgroundColor: '#ccc',
-  labelColor: '#060',
-  colors: [
-    '#0BA462',
-    '#39B580',
-    '#67C69D',
-    '#95D7BB'
-  ],
-  formatter: function (x) { return x + "%"}
-});
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+function load_chart(value1){
+  
+  var total = 200;
+  var value2 = 200 - value1;
+  $("#graph").html("");
+  var color1 = "#c9c9c9";
+  if(value1 < 125 && value1 > 60){
+    var color2 = "#73c573";
+  }else{
+    var color2 = "#ec4444";
+  }
+  
+  Morris.Donut({
+    element: 'graph',
+    resize: true,
+    data: [
+      {value: value2, label: 'N'},
+      {value: value1, label: 'BPM'}
+    ],
+    colors:[color1, color2],
+    formatter: function (y, full_list) { return y.toFixed(2); }
+  }).select(1);
+}
+load_chart(0);
+function get_data(){
+  var value1 = getRndInteger(50, 150);
+  load_chart(value1);
+}
 </script>

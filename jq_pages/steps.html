@@ -1,7 +1,12 @@
 ﻿<script src="/jq_pages/js/jquery.min.js"></script>
 <script src="/jq_pages/js/shake.js"></script>
+<div style="text-align:center">
+<div>
+	<span id="shake" style="font-size:150px;color:black;">0.0</span> steps<br>
+	<span id="calorie">0.00</span> calorie(s) burn
+</div>
 <button onclick="reset();" class="md-raised md-primary md-button ng-scope md-ink-ripple">Reset</button>
-<div id="shake" style="font-size:100px;color:black;">0</div>
+</div>
 <script>
 
 var myShakeEvent = new Shake({
@@ -9,19 +14,21 @@ var myShakeEvent = new Shake({
     timeout: 1000 // optional, determines the frequency of event generation
 });
 myShakeEvent.start();
-
+window.removeEventListener('shake',shakeEventDidOccur);
 window.addEventListener('shake', shakeEventDidOccur, false);
-var counter = 0;
+var counter = 0.00;
 //function to call when shake occurs
 function shakeEventDidOccur () {
 
     //put your own code here etc.
-    counter += 1;
-    $("#shake").html(counter);
+    counter += 1.15;
+    $("#shake").html(counter.toFixed(1));
+    $("#calorie").html((counter/20).toFixed(2));
 }
 function reset(){
-	counter = 0;
-    $("#shake").html(counter);
+	counter = 0.00;
+    $("#shake").html(counter.toFixed(1));
+    $("#calorie").html(0.00.toFixed(2));
 }
 
 </script>

@@ -20,8 +20,12 @@
     height: 70%;
     box-shadow: 10px 10px 0 rgba(0,0,0,0.2);
 }
-.ng-scope{
-	color:rgb(51, 51, 51);
+.ng-scope h2{
+  color:white;
+}
+
+.full_page_background h2{
+  color:black;
 }
 #map{
   width: 100%;
@@ -141,6 +145,9 @@ table,form,.review-box{
 }
 #login_form{
   padding-top:20%;
+}
+#login_form label{
+  color:white;
 }
 #login_form,#login_form input{
   text-align:center;
