@@ -43,6 +43,23 @@
 			});
 		}
 
+		$scope.remind = function(bookingId){
+			vm.dataLoading = true;
+			
+
+			Booking.Remind(bookingId)
+					.then(function (response) {
+					if (response !== null && response.success) {
+							
+						FlashService.Success(response.data.message);
+						//init();
+					} else {
+						FlashService.Error(response.message);
+					}
+					vm.dataLoading = false;
+			});
+		}
+
 		$scope.mark_visit = function(bookingId){
 			vm.dataLoading = true;
 			Booking.MarkVisited(bookingId)

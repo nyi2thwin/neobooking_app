@@ -13,7 +13,7 @@
 	<form name="form" ng-submit="vm.search()" role="form" class="form-inline">
         <div class="form-group mb-2" ng-class="{ 'has-error': form.postalCode.$dirty && form.postalCode.$error.required }">
             <!-- <label for="postalCode">Postal Code</label> -->
-            <input type="text" name="postalCode" ng-pattern="/\d{6}/" id="postalCode" class="form-control" ng-model="postalCode" value="{{postalCode}}" placeholder="Postcode" required />
+            <input type="text" name="postalCode" ng-pattern="/\d{6}/" id="postalCode" class="form-control home_search" ng-model="postalCode" value="{{postalCode}}" placeholder="Postcode" required />
 
 			<!-- <md-button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="md-raised md-primary">Search</md-button>
 			<md-button ng-click="vm.changeView()" class="md-raised md-primary">{{viewName}}</md-button> -->
@@ -44,10 +44,9 @@
 
 	<div class="panel-group" ng-hide ="mapView">
 	    <div class="panel panel-primary" ng-hide="hideSearchResult">
-	      	<div class="panel-heading" ></div>
 	     		<div class="panel-body" style="overflow: scroll;">
 		      		<p><label ng-show="mdata.currentBooking.length == 0"> You have no current Appointment</label></p>
-					<div class="media">
+					<div class="media" style="padding-top:30px;">
 						<!-- <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i></div> -->
 						<div class="media-body pl-3" ng-repeat="clinic in clinicList">
 							<div class="name"><small>{{clinic.name}}</small></div>
@@ -67,9 +66,8 @@
 	    </div>
 
 	    <div class="panel panel-primary" ng-hide="hideDetailResult">
-	      	<div class="panel-heading" ></div>
 	     		<div class="panel-body" style="overflow: scroll;">
-		      		<div class="media">
+		      		<div class="media" style="padding-top:30px;">
 						<div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
 						<div class="media-body pl-3">
 							<div class="name"><small>{{mdata.clinic.name}}</small></div>

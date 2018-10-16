@@ -16,11 +16,12 @@
 		var sendNotification = "https://neobooking.coinmm.co/api/sendNotification";
 		var findBookingByUserIdAndStatus = "https://neobooking.coinmm.co/api/findBookingByUserIdAndStatus";
 		var findBookingByClinicIdAndStatus = "https://neobooking.coinmm.co/api/findBookingByClinicIdAndStatus";
-
+		var sendReminder = "https://neobooking.coinmm.co/api/sendReminder"; 
         service.MakeAppointment = MakeAppointment;
 		service.Create = Create;
 		service.Delete = Delete;
 		service.Notify = Notify;
+		service.Remind = Remind;
 		service.FindBookingByUserId = FindBookingByUserId;
 		service.FindBookingByClinicId = FindBookingByClinicId;
 		service.FindUserCurrentAppointment = FindUserCurrentAppointment;
@@ -126,6 +127,11 @@
 		function Notify(bookingId) {
 			var dataToSend = {"bookingId":bookingId};  
 		    return $http.post(sendNotification,dataToSend).then(handleSuccess, handleError('Error Sending Notification Message to your phone!'));
+        }
+
+        function Remind(bookingId) {
+			var dataToSend = {"bookingId":bookingId};  
+		    return $http.post(sendReminder,dataToSend).then(handleSuccess, handleError('Error Sending Notification Message to your phone!'));
         }
 
 		function handleResponse(msg , status) {

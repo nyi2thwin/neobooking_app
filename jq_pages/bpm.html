@@ -6,7 +6,7 @@
 <script src="/jq_pages/js/jquery.min.js"></script>
 <script src="/jq_pages/js/raphael.min.js"></script>
 <script src="/jq_pages/js/morris.min.js"></script>
-<md-button onclick="get_data();" class="md-raised md-primary">Get Data</md-button>
+<md-button onclick="get_data();" id="button_click" class="md-raised md-primary">Get Data From Sensor</md-button>
 <div id="graph" style="pointer-events:none;"></div>
 <table id="indic">
   <tr><td style="background:#73c573;width:40px;">&nbsp;</td><td>Normal</td></tr>
@@ -42,7 +42,13 @@ function load_chart(value1){
 }
 load_chart(0);
 function get_data(){
-  var value1 = getRndInteger(50, 150);
-  load_chart(value1);
+  load_chart(0);
+  $('#button_click').html("Loading Sensors...")
+  setTimeout(function(){ 
+    var value1 = getRndInteger(50, 150);
+    load_chart(value1);
+    $('#button_click').html("Get Data From Sensor")
+  }, 2000);
+  
 }
 </script>

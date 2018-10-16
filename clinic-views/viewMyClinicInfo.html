@@ -15,8 +15,10 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.postalCode.$dirty && form.postalCode.$error.required }">
             <label for="postalCode">Postal Code</label>
-            <input type="text" name="postalCode" id="postalCode" class="form-control" ng-disabled="disableForm"  ng-model="mdata.postalCode" required />
-            <span ng-show="form.postalCode.$dirty && form.postalCode.$error.required" class="help-block">Postal Code is required</span>
+            <div width="100%">
+                <input type="text" name="postalCode" id="postalCode" class="form-control" ng-disabled="disableForm"  ng-model="mdata.postalCode" required />
+                <span ng-show="form.postalCode.$dirty && form.postalCode.$error.required" class="help-block">Postal Code is required</span>
+            </div>
         </div>
 		<div class="form-group" ng-class="{ 'has-error': form.doctors.$dirty && form.doctors.$error.required }">
             <label for="doctors">Doctors</label>

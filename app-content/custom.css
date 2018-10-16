@@ -1,5 +1,5 @@
 ﻿body{
-    background-image: linear-gradient(0deg, rgba(110, 110, 110, 0.3), rgba(110, 110, 110, 0.9)),url('../pics/map_bg.png');
+    background-image: linear-gradient(0deg, rgba(80, 80, 80, 0.6), rgba(80, 80, 80, 0.9)),url('../pics/map_bg.png');
     background-size: cover;
 }
 #content.clinic_view_container{
@@ -9,7 +9,7 @@
     width:80%;
 }
 #sidebar{
-	background: rgb(63,81,181);
+	background: rgb(51,51,51);
 	box-shadow: 3px 3px 2px #595757;
 }
 #logo{
@@ -146,7 +146,8 @@ table,form,.review-box{
 #login_form{
   padding-top:20%;
 }
-#login_form label{
+
+body label,.clinic_view_page th,.clinic_view_page td{
   color:white;
 }
 #login_form,#login_form input{
@@ -163,9 +164,10 @@ table,form,.review-box{
   margin-bottom:0px;
   margin-top:10px;
 }
-#postalCode{
+#postalCode.home_search{
   width: 30%;
-  float: left;
+  float:left;
   margin-top: 5px;
   padding: 18px 12px;
 }
+
